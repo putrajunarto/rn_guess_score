@@ -55,7 +55,6 @@ const Login = ({ navigation }) => {
         username: values.userName,
         password: values.password
       }, {}, res => {
-        console.log(res);
         setBtnDisabled(false);
         if (res.data.status === 'success') {
           makeDispatch(res);
@@ -169,9 +168,9 @@ const Login = ({ navigation }) => {
                 ) : null}
               </View>
               <View style={{ marginTop: 10, alignItems: 'center' }}>
-                <TouchableOpacity disabled={btnDisabled} onPress={formik.handleSubmit} style={{ backgroundColor: '#FFEBB7', padding: 10, borderRadius: 5, width: '100%', alignItems: 'center' }}>
+                <TouchableOpacity disabled={btnDisabled} onPress={formik.handleSubmit} style={{ backgroundColor: btnDisabled ? '#666' : '#FFEBB7', padding: 10, borderRadius: 5, width: '100%', alignItems: 'center' }}>
                   <View>
-                    <Text style={{ color: '#243763', fontWeight: 'bold' }}>Login</Text>
+                    <Text style={{ color: '#243763', fontWeight: 'bold' }}>{btnDisabled ? 'Loading...' : 'Login'}</Text>
                   </View>
                 </TouchableOpacity>
               </View>

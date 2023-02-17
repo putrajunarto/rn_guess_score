@@ -17,6 +17,7 @@ import {
 
 const Register = ({ navigation }) => {
   const request = useRequest();
+  const [btnDisabled, setBtnDisabled] = React.useState(false);
   const registerValidationScheme = yup.object().shape({
     userName: yup.string()
       .required("Mohon isikan Username")
@@ -55,6 +56,7 @@ const Register = ({ navigation }) => {
       confirmPassword: ''
     },
     onSubmit: (values) => {
+      setBtnDisabled(true);
       request.post('/api/v1/auth/register', {
         username: values.userName,
         first_name: values.firtsName,
@@ -64,13 +66,13 @@ const Register = ({ navigation }) => {
         password: values.password,
         password_confirmation: values.confirmPassword
       }, {}, res => {
-        console.log(res);
+        setBtnDisabled(false);
         if (res.data.status === 'success') {
           Alert.alert(
             'Success',
             'Register berhasil, silahkan login',
             [
-              { text: 'OK', onPress: () => navigation.navigate('Login') }
+              { text: 'OK', onPress: () => navigation.navigate('LoginNews') }
             ],
             { cancelable: false }
           );
@@ -200,8 +202,8 @@ const Register = ({ navigation }) => {
                 </View>
               </View>
               <View style={{ marginTop: 10 }}>
-                <TouchableOpacity style={{ backgroundColor: '#FFEBB7', padding: 10, borderRadius: 5, width: '100%', alignItems: 'center' }} onPress={formik.handleSubmit}>
-                  <Text style={{ textAlign: 'center', color: '#243763' }}>Register</Text>
+                <TouchableOpacity disabled={btnDisabled} onPress={formik.handleSubmit} style={{ backgroundColor: btnDisabled ? '#666' : '#FFEBB7', padding: 10, borderRadius: 5, width: '100%', alignItems: 'center' }}>
+                  <Text style={{ textAlign: 'center', color: '#243763' }}>{btnDisabled ? 'Loading...' : 'Register'}</Text>
                 </TouchableOpacity>
               </View>
               {/* Or */}

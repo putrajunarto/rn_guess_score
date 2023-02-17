@@ -121,6 +121,7 @@ const HomeNews = ({ navigation }) => {
                     <TouchableOpacity key={index} style={[styles.row, styles.borderBottom, { paddingBottom: 10 }]} onPress={() => navigation.navigate('DetailNews', { data: item })}>
                       <View style={[styles.col, { flex: 1 }]}>
                         {
+                          item.yoast_head_json.og_image != null &&
                           item.yoast_head_json.og_image.map((item, index) => {
                             return (
                               <ImageBackground
