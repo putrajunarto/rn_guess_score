@@ -107,10 +107,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#ff0000',
+    color: '#008d7f',
   },
   borderBottomActive: {
     borderBottomWidth: 2,
-    borderBottomColor: '#ff0000',
+    borderBottomColor: '#008d7f',
   },
 });

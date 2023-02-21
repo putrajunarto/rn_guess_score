@@ -12,20 +12,23 @@ import {
   StyleSheet,
   ScrollView,
   View,
+  Image,
   TouchableOpacity,
 } from "react-native";
 
 const HomeNews = ({ navigation }) => {
+  const request = useRequest();
+  const dispatch = useDispatch();
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [perPage, setPerPage] = React.useState(10);
   const [newLoad, setNewLoad] = React.useState(false);
-  const request = useRequest();
-  const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
+  const [unauth, setUnauth] = React.useState(false);
 
   React.useEffect(() => {
     request.postWithToken("/api/v1/auth/me", {}, {}, (res) => {
+      fatchData();
       if (res.status === 200) {
         dispatch({
           type: AuthAction.SAVE_USER_INFO,
@@ -47,9 +50,29 @@ const HomeNews = ({ navigation }) => {
   const fatchData = () => {
     axios.get(`https://www.bolamilenia.com/wp-json/wp/v2/posts?per_page=${perPage}&categories=30`)
       .then((response) => {
-        setData(response.data);
-        setLoading(false);
-        setNewLoad(false);
+        let data = response.data;
+        data.map((item, index) => {
+          request.postWithToken("/api/v1/comment/get", {
+            "post_id": item.id,
+          }, {}, (res) => {
+            if (res.status === 200) {
+              data[index].comment = res.data;
+            }
+            if (res.status == 401) {
+              dispatch({
+                type: AuthAction.USER_LOGOUT,
+                payload: ""
+              });
+              LoginManager.logOut();
+              setUnauth(true);
+            }
+          });
+        });
+        setTimeout(() => {
+          setData(data);
+          setLoading(false);
+          setNewLoad(false);
+        }, 300);
       })
       .catch((error) => {
         console.log(error);
@@ -115,7 +138,7 @@ const HomeNews = ({ navigation }) => {
         <View style={{ flex: 1, paddingBottom: 70, }}>
           <ScrollView style={{ padding: 20 }}>
             {
-              loading ? <Text style={{ textAlign: 'center', color: '#ff0000', fontSize: 16, fontWeight: 'bold', marginTop: 10, marginBottom: 50 }}>Loading...</Text> :
+              loading ? <Text style={{ textAlign: 'center', color: '#008d7f', fontSize: 16, fontWeight: 'bold', marginTop: 10, marginBottom: 50 }}>Loading...</Text> :
                 data.map((item, index) => {
                   return (
                     <TouchableOpacity key={index} style={[styles.row, styles.borderBottom, { paddingBottom: 10 }]} onPress={() => navigation.navigate('DetailNews', { data: item })}>
@@ -127,7 +150,7 @@ const HomeNews = ({ navigation }) => {
                               <ImageBackground
                                 key={index}
                                 source={{ uri: item.url }}
-                                style={{ width: '100%', height: 90 }}
+                                style={{ width: '100%', height: 90, backgroundColor: '#ccc' }}
                               />
                             )
                           })
@@ -135,6 +158,21 @@ const HomeNews = ({ navigation }) => {
                       </View>
                       <View style={[styles.col, { flex: 1, paddingLeft: 20 }]}>
                         <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#000' }}>{item.title.rendered}</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', height: 30 }}>
+                          <View style={{ flexDirection: 'row', alignItems: 'center', height: 30 }}>
+                            <Image source={require('../../assets/images/comment.png')} style={{ width: 20, height: 20 }} />
+                            <Text style={{ fontSize: 12, color: '#000', marginLeft: 5 }}>{item.comment?.data?.length}</Text>
+                          </View>
+                          <View style={{ flexDirection: 'row', alignItems: 'center', height: 30, marginLeft: 20 }}>
+                            {
+                              item.comment?.isLiked ? 
+                              <Image source={require('../../assets/images/like-active.png')} style={{ width: 20, height: 20 }} />
+                              :
+                              <Image source={require('../../assets/images/like.png')} style={{ width: 20, height: 20 }} />
+                            }
+                            <Text style={{ fontSize: 12, color: '#000', marginLeft: 5 }}>{item.comment?.likeCount}</Text>
+                          </View>
+                        </View>
                       </View>
                     </TouchableOpacity>
                   )
@@ -143,7 +181,7 @@ const HomeNews = ({ navigation }) => {
             {
               loading ? "" :
                 <TouchableOpacity disabled={newLoad} onPress={loadMore}>
-                  <Text style={{ textAlign: 'center', color: '#ff0000', fontSize: 16, fontWeight: 'bold', marginTop: 10, marginBottom: 50 }}>
+                  <Text style={{ textAlign: 'center', color: '#008d7f', fontSize: 16, fontWeight: 'bold', marginTop: 10, marginBottom: 50 }}>
                     {
                       newLoad ? "Loading..." : "Muat Lebih Banyak"
                     }
@@ -185,10 +223,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#ff0000',
+    color: '#008d7f',
   },
   borderBottomActive: {
     borderBottomWidth: 2,
-    borderBottomColor: '#ff0000',
+    borderBottomColor: '#008d7f',
   },
 });

@@ -34,31 +34,19 @@ const FooterNews = (props) => {
                 <Image source={require('../assets/images/newspaper.png')} style={{ height: 25, width: 25 }} />
 
             }
-            <Text style={props.page === 'news' ? styles.active : styles.text}>News</Text>
+            <Text style={props.page === 'news' ? styles.active : styles.text}>Berita</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={[styles.col]} onPress={() => navigation.navigate('Livescore')} underlayColor="#dadada">
+        <TouchableHighlight style={[styles.col]} underlayColor="#dadada">
           <View style={[styles.itemCenter]}>
             {
-              props.page === 'livescore' ?
-                <Image source={require('../assets/images/live-streaming-active.png')} style={{ height: 25, width: 25 }} />
-                :
-                <Image source={require('../assets/images/live-streaming.png')} style={{ height: 25, width: 25 }} />
-
-            }
-            <Text style={props.page === 'livescore' ? styles.active : styles.text}>Livescore</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight style={[styles.col]} onPress={() => navigation.navigate('Match')} underlayColor="#dadada">
-          <View style={[styles.itemCenter]}>
-            {
-              props.page === 'match' ?
+              props.page === 'game' ?
                 <Image source={require('../assets/images/soccer-player-active.png')} style={{ height: 25, width: 25 }} />
                 :
                 <Image source={require('../assets/images/soccer-player.png')} style={{ height: 25, width: 25 }} />
 
             }
-            <Text style={props.page === 'match' ? styles.active : styles.text}>Match</Text>
+            <Text style={props.page === 'game' ? styles.active : styles.text}>Game</Text>
           </View>
         </TouchableHighlight>
         <TouchableHighlight style={[styles.col]} onPress={() => navigation.navigate('Statistik')} underlayColor="#dadada">
@@ -70,7 +58,31 @@ const FooterNews = (props) => {
                 <Image source={require('../assets/images/stats.png')} style={{ height: 25, width: 25 }} />
 
             }
-            <Text style={props.page === 'statistik' ? styles.active : styles.text}>statistik</Text>
+            <Text style={props.page === 'statistik' ? styles.active : styles.text}>Klasemen</Text>
+          </View>
+        </TouchableHighlight>
+        {/* <TouchableHighlight style={[styles.col]} onPress={() => navigation.navigate('Match')} underlayColor="#dadada">
+          <View style={[styles.itemCenter]}>
+            {
+              props.page === 'match' ?
+                <Image source={require('../assets/images/soccer-player-active.png')} style={{ height: 25, width: 25 }} />
+                :
+                <Image source={require('../assets/images/soccer-player.png')} style={{ height: 25, width: 25 }} />
+
+            }
+            <Text style={props.page === 'match' ? styles.active : styles.text}>Match</Text>
+          </View>
+        </TouchableHighlight> */}
+        <TouchableHighlight style={[styles.col]} onPress={() => navigation.navigate('Livescore')} underlayColor="#dadada">
+          <View style={[styles.itemCenter]}>
+            {
+              props.page === 'livescore' ?
+                <Image source={require('../assets/images/live-streaming-active.png')} style={{ height: 25, width: 25 }} />
+                :
+                <Image source={require('../assets/images/live-streaming.png')} style={{ height: 25, width: 25 }} />
+
+            }
+            <Text style={props.page === 'livescore' ? styles.active : styles.text}>Livescore</Text>
           </View>
         </TouchableHighlight>
       </View>
@@ -107,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   active: {
-    color: '#FF0000',
+    color: '#008d7f',
   },
   text: {
     color: '#000000',

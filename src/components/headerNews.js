@@ -96,7 +96,7 @@ const HeaderNews = (props) => {
               </TouchableOpacity>
           )
       }
-      <Text style={styles.logo}>Football5Star</Text>
+      <Text style={styles.logo}>Bola Milenia</Text>
     </View>
     {
       !isOpen ? <ScrollView style={styles.menuList}>
@@ -114,7 +114,7 @@ const HeaderNews = (props) => {
                     <Text style={[styles.btnWarning, styles.mr10]}>PROFILE</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => { doLogout(); setIsOpen(!isOpen) }}>
-                    <Text style={[styles.btnWarning]}>LOGOUT</Text>
+                    <Text style={[styles.btnDanger]}>LOGOUT</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -132,11 +132,11 @@ const HeaderNews = (props) => {
               </View>
           }
         </ImageBackground>
-        <TouchableOpacity onPress={() => onPlayGame()} style={styles.mt20}>
+        {/* <TouchableOpacity onPress={() => onPlayGame()} style={styles.mt20}>
           <Image source={require('../assets/images/side1.jpg')} style={{ height: 170, width: '100%' }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={() => onLiveKuis()} style={styles.mt20}>
-          <Image source={require('../assets/images/side2.jpg')} style={{ height: 170, width: '100%' }} />
+          <Image source={require('../assets/images/side2.jpg')} style={{ height: 220, width: '100%' }} />
         </TouchableOpacity>
         <View style={[styles.dFlex, styles.my20]}>
           <TouchableOpacity onPress={() => Linking.openURL('http://google.com')} style={styles.items}>
@@ -170,8 +170,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnWarning: {
-    backgroundColor: 'yellow',
-    color: 'black',
+    backgroundColor: '#008d7f',
+    color: 'white',
+    fontWeight: 'bold',
+    padding: 10,
+    textAlign: 'center',
+    borderRadius: 50,
+    minWidth: 130,
+  },
+  btnDanger: {
+    backgroundColor: '#d9534f',
+    color: 'white',
     fontWeight: 'bold',
     padding: 10,
     textAlign: 'center',
@@ -179,7 +188,7 @@ const styles = StyleSheet.create({
     minWidth: 130,
   },
   imageBg: {
-    height: 220,
+    height: 170,
     width: '100%',
     display: 'flex',
     alignItems: 'center',
@@ -194,7 +203,7 @@ const styles = StyleSheet.create({
   },
   headers: {
     height: 70,
-    backgroundColor: 'red',
+    backgroundColor: '#008d7f',
     justifyContent: 'center',
     shadowColor: "#000",
     shadowOffset: {

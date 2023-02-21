@@ -34,7 +34,6 @@ const DetailNews = (props) => {
 
   React.useEffect(() => {
     setData(props.route.params.data);
-    console.log(props.route.params.data)
     setLoading(false);
   }, []);
 
@@ -102,7 +101,6 @@ const DetailNews = (props) => {
     request.postWithToken("/api/v1/comment/get", {
       "post_id": data.id,
     }, {}, (res) => {
-      console.log(res);
       if (res.status === 200) {
         setComment(res.data.data);
         setIsLike(res.data.isLiked);
@@ -199,7 +197,7 @@ const DetailNews = (props) => {
             {/* button please login */}
             <View style={{ backgroundColor: '#fff', padding: 20, marginTop: 3, }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                <TouchableOpacity style={{ backgroundColor: 'red', padding: 10, borderRadius: 5, marginRight: 10 }} onPress={() => props.navigation.navigate('LoginNews')}>
+                <TouchableOpacity style={{ backgroundColor: '#008d7f', padding: 10, borderRadius: 5, marginRight: 10 }} onPress={() => props.navigation.navigate('LoginNews')}>
                   <Text style={{ color: '#fff' }}>Silahkan Login Untuk Memberikan Komentar</Text>
                 </TouchableOpacity>
               </View>
@@ -217,7 +215,7 @@ const DetailNews = (props) => {
 
             {/* Post Comments */}
             <View style={{ backgroundColor: '#fff', padding: 20, marginTop: 3, }}>
-              <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>Komentar</Text>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20, color: '#000' }}>Komentar</Text>
               {/* Input Post Comments */}
               <View style={{ marginBottom: 10 }}>
                 <TextInput
@@ -227,6 +225,7 @@ const DetailNews = (props) => {
                   maxLength={140}
                   onChangeText={text => onChangeText(text)}
                   value={value}
+                  placeholderTextColor="gray"
                   placeholder="Tulis komentar disini..."
                   style={{ flex: 1, backgroundColor: '#dadada', color: 'gray', borderRadius: 5, padding: 10, textAlignVertical: 'top' }}
                 />
@@ -314,12 +313,22 @@ export default DetailNews;
 const classesStyles = {
   'wp-block-image': {
     backgroundColor: '#fff',
+    marginBottom: -30,
   },
   'wp-caption-text': {
     color: '#444',
     fontSize: 12,
     textAlign: 'center',
   },
+  'irp-shortcode': {
+    paddingTop: 10,
+    backgroundColor: '#dadada',
+    borderRadius: 5,
+    marginBottom: 10,
+  }, 
+  // 'wp-image-10455': {
+  //   display: 'none',
+  // }
 }
 
 const tagsStyles = {
@@ -328,19 +337,15 @@ const tagsStyles = {
     fontSize: 12,
     textAlign: 'center',
   },
-  div: {
-    paddingTop: 5,
-    backgroundColor: '#dadada',
-    borderRadius: 5,
-  },
   p: {
     fontSize: 14,
-    marginBottom: 20,
+    marginBottom: 0,
     color: '#000'
   },
   a: {
-    color: '#ff0000',
-    textDecorationLine: 'underline',
+    color: '#008d7f',
+    textDecorationLine: 'none',
+    fontWeight: 'bold',
   },
   img: {
     width: '100%',
@@ -408,7 +413,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: "#ff0000",
+    backgroundColor: "#008d7f",
     padding: 10,
     borderRadius: 10,
   },
