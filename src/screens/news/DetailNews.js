@@ -324,11 +324,18 @@ const classesStyles = {
     paddingTop: 10,
     backgroundColor: '#dadada',
     borderRadius: 5,
-    marginBottom: 10,
-  }, 
-  // 'wp-image-10455': {
-  //   display: 'none',
-  // }
+    marginTop: 10,
+  },
+  'wp-element-caption': {
+    color: '#444',
+    fontSize: 12,
+    textAlign: 'center',
+    marginBottom: 30,
+    marginTop: -10,
+  },
+  'wp-block-spacer': {
+    marginTop: -10,
+  },
 }
 
 const tagsStyles = {
