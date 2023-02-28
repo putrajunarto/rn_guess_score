@@ -63,6 +63,14 @@ const Points = ({navigation}) => {
               <Image source={require('../../assets/banner/hadiah/Pulsa-100rb.png')} style={{ width: '100%', height: 170, marginTop: 10 }} />
               <Image source={require('../../assets/banner/hadiah/Jaket.png')} style={{ width: '100%', height: 170, marginTop: 10 }} />
             </View>
+            <View style={[styles.mt20]}>
+              <Text style={{ color: '#000', marginBottom: 5 }}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nunc nisl ultricies nunc, nec ultricies nisl nisl sit amet nisl. Sed euismod, nisl vitae ultricies lacinia, nunc nisl ultricies nunc, nec ultricies nisl nisl sit amet nisl.
+              </Text>
+              <Text style={{ color: '#000', marginBottom: 5 }}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nunc nisl ultricies nunc, nec ultricies nisl nisl sit amet nisl. Sed euismod, nisl vitae ultricies lacinia, nunc nisl ultricies nunc, nec ultricies nisl nisl sit amet nisl.
+              </Text>
+            </View>
           </View>
         </ScrollView>
       </View>

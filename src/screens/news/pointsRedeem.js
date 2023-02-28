@@ -43,7 +43,7 @@ const PointsRedeem = ({ navigation }) => {
               <View style={[styles.card, styles.p0]}>
                 <Image source={require('../../assets/banner/hadiah/Pulsa-50rb.png')} style={{ width: '100%', height: 170, borderTopLeftRadius : 10, borderTopRightRadius: 10 }} />
                 <View style={[styles.row, styles.p10]}>
-                  <Text>20 Point</Text>
+                  <Text style={{ color : '#333'}}>20 Point</Text>
                   <TouchableOpacity style={{ backgroundColor: '#008d7f', paddingHorizontal: 15, paddingVertical: 5, borderRadius: 5, marginLeft: 'auto' }}>
                     <Text style={{ color: '#fff', fontWeight: 'bold' }}>Redeem</Text>
                   </TouchableOpacity>
@@ -52,7 +52,7 @@ const PointsRedeem = ({ navigation }) => {
               <View style={[styles.card, styles.p0, styles.mt20]}>
                 <Image source={require('../../assets/banner/hadiah/Pulsa-100rb.png')} style={{ width: '100%', height: 170, borderTopLeftRadius : 10, borderTopRightRadius: 10 }} />
                 <View style={[styles.row, styles.p10]}>
-                  <Text>40 Point</Text>
+                  <Text style={{ color : '#333'}}>40 Point</Text>
                   <TouchableOpacity style={{ backgroundColor: '#008d7f', paddingHorizontal: 15, paddingVertical: 5, borderRadius: 5, marginLeft: 'auto' }}>
                     <Text style={{ color: '#fff', fontWeight: 'bold' }}>Redeem</Text>
                   </TouchableOpacity>
@@ -61,7 +61,7 @@ const PointsRedeem = ({ navigation }) => {
               <View style={[styles.card, styles.p0, styles.mt20]}>
                 <Image source={require('../../assets/banner/hadiah/Jaket.png')} style={{ width: '100%', height: 170, borderTopLeftRadius : 10, borderTopRightRadius: 10 }} />
                 <View style={[styles.row, styles.p10]}>
-                  <Text>100 Point</Text>
+                  <Text style={{ color : '#333'}}>100 Point</Text>
                   <TouchableOpacity style={{ backgroundColor: '#008d7f', paddingHorizontal: 15, paddingVertical: 5, borderRadius: 5, marginLeft: 'auto' }}>
                     <Text style={{ color: '#fff', fontWeight: 'bold' }}>Redeem</Text>
                   </TouchableOpacity>
