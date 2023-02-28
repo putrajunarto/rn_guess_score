@@ -29,6 +29,7 @@ const HomeNews = ({ navigation }) => {
   React.useEffect(() => {
     request.postWithToken("/api/v1/auth/me", {}, {}, (res) => {
       fatchData();
+      console.log(res);
       if (res.status === 200) {
         dispatch({
           type: AuthAction.SAVE_USER_INFO,

@@ -33,10 +33,10 @@ const HeaderNews = (props) => {
     navigation.navigate("LoginNews");
   }
 
-  const onPlayGame = () => {
+  const onPoints = () => {
     if (authState.status) {
       setIsOpen(!isOpen);
-      navigation.navigate("PlayGame");
+      navigation.navigate('Points')
     } else {
       Alert.alert(
         "Login Required",
@@ -104,7 +104,7 @@ const HeaderNews = (props) => {
             authState.status ?
               <View>
                 <Text style={[styles.sideTitle]}>WELCOME</Text>
-                <Text style={[styles.sideTitle, styles.mt10]}>{authState._user.data.first_name} {authState._user.data.last_name}</Text>
+                <Text style={[styles.sideTitle, styles.mt10]}>{authState._user?.data?.first_name} {authState._user?.data?.last_name}</Text>
                 <View style={[styles.mt20, styles.dFlex]}>
                   <TouchableOpacity onPress={() => {
                     navigation.navigate('Profile');
@@ -131,11 +131,11 @@ const HeaderNews = (props) => {
               </View>
           }
         </ImageBackground>
-        {/* <TouchableOpacity onPress={() => onPlayGame()} style={styles.mt20}>
-          <Image source={require('../assets/images/side1.jpg')} style={{ height: 170, width: '100%' }} />
-        </TouchableOpacity> */}
         <TouchableOpacity onPress={() => onLiveKuis()} style={styles.mt20}>
           <Image source={require('../assets/images/side2.jpg')} style={{ height: 220, width: '100%' }} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => onPoints()} style={styles.mt20}>
+          <Image source={require('../assets/images/side1.jpg')} style={{ height: 220, width: '100%' }} />
         </TouchableOpacity>
         <View style={[styles.dFlex, styles.my20]}>
           <TouchableOpacity onPress={() => Linking.openURL('http://google.com')} style={styles.items}>
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   menuList: {
-    backgroundColor: 'white',
+    backgroundColor: '#eeffeb',
     height: '100%',
     width: '100%',
     position: 'relative',

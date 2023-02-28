@@ -37,6 +37,9 @@ import EditPhone from "./src/screens/news/editPhone";
 import EditPassword from "./src/screens/news/editPassword";
 import Games from "./src/screens/news/games";
 import DetailGames from "./src/screens/news/detailGames";
+import Points from "./src/screens/news/points";
+import PointsRedeem from "./src/screens/news/pointsRedeem";
+import PointsHistory from "./src/screens/news/pointsHistory";
 
 // navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -64,6 +67,9 @@ const NavigationWrapper = () => {
         <ScreenStack name="EditPassword" component={EditPassword} />
         <ScreenStack name="Games" component={Games} />
         <ScreenStack name="DetailGames" component={DetailGames} />
+        <ScreenStack name="Points" component={Points} />
+        <ScreenStack name="PointsRedeem" component={PointsRedeem} />
+        <ScreenStack name="PointsHistory" component={PointsHistory} />
 
         <ScreenStack name="Home" component={Home} />
         <ScreenStack name="CaraBermain" component={CaraBermain} />
