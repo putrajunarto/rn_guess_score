@@ -126,7 +126,7 @@ const Berita = ({ navigation }) => {
                               <ImageBackground
                                 key={index}
                                 source={{ uri: item.url }}
-                                style={{ width: '100%', height: 160, backgroundColor: '#ccc' }}
+                                style={{ width: '100%', height: 90, backgroundColor: '#ccc' }}
                               />
                             )
                           })

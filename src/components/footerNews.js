@@ -37,16 +37,16 @@ const FooterNews = (props) => {
             <Text style={props.page === 'news' ? styles.active : styles.text}>Berita</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={[styles.col]} underlayColor="#dadada">
+        <TouchableHighlight style={[styles.col]} onPress={() => navigation.navigate('Games')} underlayColor="#dadada">
           <View style={[styles.itemCenter]}>
             {
-              props.page === 'game' ?
+              props.page === 'games' ?
                 <Image source={require('../assets/images/soccer-player-active.png')} style={{ height: 25, width: 25 }} />
                 :
                 <Image source={require('../assets/images/soccer-player.png')} style={{ height: 25, width: 25 }} />
 
             }
-            <Text style={props.page === 'game' ? styles.active : styles.text}>Game</Text>
+            <Text style={props.page === 'games' ? styles.active : styles.text}>Game</Text>
           </View>
         </TouchableHighlight>
         <TouchableHighlight style={[styles.col]} onPress={() => navigation.navigate('Statistik')} underlayColor="#dadada">

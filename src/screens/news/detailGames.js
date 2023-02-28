@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthAction from '../../store/actions/AuthActions';
 import { LoginManager } from 'react-native-fbsdk';
 
-const DetailNews = (props) => {
+const DetailGames = (props) => {
   const { width } = useWindowDimensions();
   const dispatch = useDispatch();
   const request = useRequest();
@@ -192,123 +192,12 @@ const DetailNews = (props) => {
               </View>
             </View>
         }
-        {unauth ?
-          <>
-            {/* button please login */}
-            <View style={{ backgroundColor: '#fff', padding: 20, marginTop: 3, }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                <TouchableOpacity style={{ backgroundColor: '#008d7f', padding: 10, borderRadius: 5, marginRight: 10 }} onPress={() => props.navigation.navigate('LoginNews')}>
-                  <Text style={{ color: '#fff' }}>Silahkan Login Untuk Memberikan Komentar</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </>
-          : <>
-            {/* Like Button */}
-            <View style={{ backgroundColor: '#fff', padding: 20, marginTop: 3, }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity style={{ backgroundColor: (!isLike ? '#FF78F0' : 'red'), padding: 10, borderRadius: 5, marginRight: 10 }} onPress={() => onLike()}>
-                  <Text style={{ color: '#fff' }}>{!isLike ? 'Suka' : 'Batal Suka'} ( {likeCount} )</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            {/* Post Comments */}
-            <View style={{ backgroundColor: '#fff', padding: 20, marginTop: 3, }}>
-              <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20, color: '#000' }}>Komentar</Text>
-              {/* Input Post Comments */}
-              <View style={{ marginBottom: 10 }}>
-                <TextInput
-                  editable
-                  multiline
-                  numberOfLines={4}
-                  maxLength={140}
-                  onChangeText={text => onChangeText(text)}
-                  value={value}
-                  placeholderTextColor="gray"
-                  placeholder="Tulis komentar disini..."
-                  style={{ flex: 1, backgroundColor: '#dadada', color: 'gray', borderRadius: 5, padding: 10, textAlignVertical: 'top' }}
-                />
-              </View>
-              <TouchableOpacity disabled={btnDisabled} style={{ backgroundColor: '#53971e', marginBottom: 20, borderRadius: 5, padding: 10 }} onPress={() => onPostComments()}>
-                <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>Kirim</Text>
-              </TouchableOpacity>
-              {/* List Comments */}
-              {
-                comment.map((item, index) => {
-                  return (
-                    <>
-                      <View key={index} style={{ marginBottom: 10 }}>
-                        <Text style={{ fontSize: 14, color: '#444', fontWeight: 'bold', marginBottom: 5 }}>{item.user_name}</Text>
-                        <Text style={{ fontSize: 14, color: '#444', marginBottom: 5 }}>{item.comments}</Text>
-                        <Text style={{ fontSize: 12, color: '#444' }}>{timeAgo(item.created_at)}</Text>
-                        {/* button reply */}
-                        <View style={{ flexDirection: 'row' }}>
-                          {
-                            replyShow != item.id ?
-                              <TouchableOpacity style={{ backgroundColor: '#53971e', marginTop: 10, borderRadius: 5, padding: 5, width: 50 }} onPress={() => showReply(item.id)}>
-                                <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center', fontSize: 12, }}>Balas</Text>
-                              </TouchableOpacity> :
-                              <TouchableOpacity style={{ backgroundColor: '#53971e', marginTop: 10, borderRadius: 5, padding: 5, width: 80 }} onPress={() => hideReply(item.id)}>
-                                <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center', fontSize: 12, }}>Hide Balas</Text>
-                              </TouchableOpacity>
-                          }
-                          {
-                            item.replies.length > 0 ? (
-                              replies != item.id ?
-                                <TouchableOpacity style={{ backgroundColor: 'orange', marginLeft: 5, marginTop: 10, borderRadius: 5, padding: 5, width: 150 }} onPress={() => showReplies(item.id)}>
-                                  <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center', fontSize: 12, }}>Lihat Komentar ({item.replies.length})</Text>
-                                </TouchableOpacity> :
-                                <TouchableOpacity style={{ backgroundColor: 'orange', marginLeft: 5, marginTop: 10, borderRadius: 5, padding: 5, width: 180 }} onPress={() => hideReplies(item.id)}>
-                                  <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center', fontSize: 12, }}>Sembunyikan Komentar ({item.replies.length})</Text>
-                                </TouchableOpacity>
-                            ) : ''
-                          }
-                        </View>
-                      </View>
-                      {/* input reply */}
-                      <View style={replyShow === item.id ? '' : { display: 'none' }}>
-                        <TextInput
-                          editable
-                          multiline
-                          numberOfLines={4}
-                          maxLength={140}
-                          placeholder="Tulis balasan disini..."
-                          onChangeText={text => onChangeTextReply(text)}
-                          value={valueReply}
-                          style={{ flex: 1, backgroundColor: '#dadada', color: 'gray', borderRadius: 5, padding: 10, textAlignVertical: 'top', marginBottom: 10 }}
-                        />
-                        <TouchableOpacity disabled={btnDisabled} style={{ backgroundColor: '#53971e', marginBottom: 10, borderRadius: 5, padding: 10 }} onPress={() => onPostReply(item.id)}>
-                          <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>Reply</Text>
-                        </TouchableOpacity>
-                      </View>
-                      {/* list reply */}
-                      <View style={replies === item.id ? '' : { display: 'none' }}>
-                        {
-                          item.replies.map((item, index) => {
-                            return (
-                              <View key={`${item.id}-${index}`} style={{ marginBottom: 10, backgroundColor: 'gray', marginLeft: 20, padding: 10, borderRadius: 5 }}>
-                                <Text style={{ fontSize: 14, color: '#fff', fontWeight: 'bold', marginBottom: 5 }}>{item.user_name}</Text>
-                                <Text style={{ fontSize: 14, color: '#fff', marginBottom: 5 }}>{item.comments}</Text>
-                                <Text style={{ fontSize: 12, color: '#fff' }}>{timeAgo(item.created_at)}</Text>
-                              </View>
-                            )
-                          })
-                        }
-                      </View>
-                    </>
-                  )
-                })
-              }
-            </View>
-          </>
-        }
       </ScrollView>
     </>
   );
 }
 
-export default DetailNews;
+export default DetailGames;
 
 const classesStyles = {
   'wp-block-image': {

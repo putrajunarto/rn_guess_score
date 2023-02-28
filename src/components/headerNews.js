@@ -33,10 +33,6 @@ const HeaderNews = (props) => {
     navigation.navigate("LoginNews");
   }
 
-  // React.useEffect(() => {
-  //   console.log(authState)
-  // }, [authState.token]);
-
   const onPlayGame = () => {
     if (authState.status) {
       setIsOpen(!isOpen);
@@ -51,7 +47,7 @@ const HeaderNews = (props) => {
             onPress: () => console.log("Cancel Pressed"),
             style: "cancel"
           },
-          { text: "OK", onPress: () => {navigation.navigate("LoginNews"); setIsOpen(!isOpen)} }
+          { text: "OK", onPress: () => { navigation.navigate("LoginNews"); setIsOpen(!isOpen) } }
         ],
         { cancelable: false }
       );
@@ -72,11 +68,11 @@ const HeaderNews = (props) => {
             onPress: () => console.log("Cancel Pressed"),
             style: "cancel"
           },
-          { text: "OK", onPress: () => {navigation.navigate("LoginNews"); setIsOpen(!isOpen)} }
+          { text: "OK", onPress: () => { navigation.navigate("LoginNews"); setIsOpen(!isOpen) } }
         ],
         { cancelable: false }
       );
-    }    
+    }
   };
 
   return <>
@@ -96,7 +92,10 @@ const HeaderNews = (props) => {
               </TouchableOpacity>
           )
       }
-      <Text style={styles.logo}>Bola Milenia</Text>
+      <View style={styles.logoContainer}>
+        <Image source={require('../assets/images/logo.png')} style={{ height: 35, width: 35 }} />
+        <Text style={styles.logo}>Bolamilenia</Text>
+      </View>
     </View>
     {
       !isOpen ? <ScrollView style={styles.menuList}>
@@ -160,6 +159,12 @@ const HeaderNews = (props) => {
 export default HeaderNews;
 
 const styles = StyleSheet.create({
+  logoContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   my20: {
     marginVertical: 20,
   },
@@ -220,8 +225,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: .8,
     color: '#fff',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    marginLeft: 5,
   },
   mt20: {
     marginTop: 20,

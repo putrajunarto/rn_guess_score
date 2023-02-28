@@ -35,6 +35,8 @@ import Profile from "./src/screens/news/profile";
 import EditEmail from "./src/screens/news/editEmail";
 import EditPhone from "./src/screens/news/editPhone";
 import EditPassword from "./src/screens/news/editPassword";
+import Games from "./src/screens/news/games";
+import DetailGames from "./src/screens/news/detailGames";
 
 // navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -60,6 +62,8 @@ const NavigationWrapper = () => {
         <ScreenStack name="EditEmail" component={EditEmail} />
         <ScreenStack name="EditPhone" component={EditPhone} />
         <ScreenStack name="EditPassword" component={EditPassword} />
+        <ScreenStack name="Games" component={Games} />
+        <ScreenStack name="DetailGames" component={DetailGames} />
 
         <ScreenStack name="Home" component={Home} />
         <ScreenStack name="CaraBermain" component={CaraBermain} />

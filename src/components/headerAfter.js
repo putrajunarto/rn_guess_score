@@ -62,7 +62,7 @@ const HeaderAfter = (props) => {
             <Image source={require('../assets/images/close.png')} style={styles.close} />
           </TouchableHighlight>
       }
-      <Image style={styles.logo} source={require('../assets/images/logo.jpeg')} />
+      <Image style={styles.logo} source={require('../assets/images/logo-landscape.jpeg')} />
     </View>
     {
       !isOpen ? <>
