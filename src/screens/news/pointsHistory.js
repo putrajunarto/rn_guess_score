@@ -36,11 +36,11 @@ const PointsHistory = ({ navigation }) => {
                   Point
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.col, styles.borderBottom]} onPress={() => navigation.navigate('PointsRedeem')}>
+              {/* <TouchableOpacity style={[styles.col, styles.borderBottom]} onPress={() => navigation.navigate('PointsRedeem')}>
                 <Text style={{ fontSize: 16, fontWeight: "bold", color: "#000", textAlign: 'center' }}>
                   Redeem
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity style={[styles.col, styles.tabActive]} onPress={() => navigation.navigate('PointsHistory')}>
                 <Text style={{ fontSize: 16, fontWeight: "bold", color: "#000", textAlign: 'center' }}>
                   History
